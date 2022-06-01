@@ -15,45 +15,44 @@ function Game_Start() {
 
     const [validation1, setValidation1] = React.useState(false);
     const [validation2, setValidation2] = React.useState(false);
-    
 
-    // async function componentDidMount() {
+    const [listSansZero, setListSansZero] = React.useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const [listAvecZero, setListAvecZero] = React.useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-    //     const url = "http://localhost:9000/Researchers";
-    //     const response = await fetch(url);
-
-    //     const listeChercheurs = await response.json();
-        
-    //     setResearchers(listeChercheurs)
-    //     console.log(researchers);
-    // }
+    const [msgErreur, setMsgErreur] = React.useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // let data = {
-        //     researcherId: chercheur,
-        //     labellisation: labellisation,
-        //     description: description,
-        //     managers: managers,
-        //     affiliation: affiliation,
-        //     creationDate: formattedDate,
-        //     openPrivateResearchers:checkbox};
-        // Axios.post("http://localhost:9000/Api/AddPlatform", data)
-        // .then(res => {
-        //     console.log(res.data)
-           
-        // })
-        // window.location.reload();
-        history('/Game');
+        history('/Game',
+            {state:
+                {
+                    nomJoueur1: nomJoueur1,
+                    nomJoueur2: nomJoueur2,
+                    nbre1: nbre1,
+                    nbre2: nbre2
+                }
+            });
     }
 
     const handleSubmit1 = (event) => {
-        setValidation1(true);
-    }
+        event.preventDefault();
+        if ( ((nbre1[0] in listSansZero) && (nbre1[1] in listAvecZero) && (nbre1[2] in listAvecZero)) && ((nbre1[0] != 0) && (nbre1[0] !== nbre1[1]) && (nbre1[0] !== nbre1[2]) && (nbre1[1] !== nbre1[2]) ) ) {
+            console.log(nbre1[0])
+            setValidation1(true);
+            setMsgErreur(false);
+        } else {
+            setMsgErreur(true);
+        }
+    };
 
     const handleSubmit2 = (event) => {
-        setValidation2(true);
-    }
+        if ( ((nbre2[0] in listSansZero) && (nbre2[1] in listAvecZero) && (nbre2[2] in listAvecZero)) && ((nbre2[0] != 0) && (nbre2[0] !== nbre2[1]) && (nbre2[0] !== nbre2[2]) && (nbre2[1] !== nbre2[2]) ) ) {
+            setValidation2(true);
+            setMsgErreur(false);
+        } else {
+            setMsgErreur(true);
+        }
+    };
 
     return (
         <div>
@@ -67,7 +66,7 @@ function Game_Start() {
                         {
                             validation1 ? (
                                 <div className='form'>
-                                    <a href="/" class="close-button">&#10006;</a>
+                                    <a href="/Game_Start" class="close-button">&#10006;</a>
                                     <h3 className='title'> 1st player :  </h3>
                                     <label className='label' >
                                         Player name : {nomJoueur1}
@@ -75,7 +74,7 @@ function Game_Start() {
                                 </div>
                             ) : (
                                 <form className='form' onSubmit={handleSubmit1}>
-                                    <a href="/" class="close-button">&#10006;</a>
+                                    <a href="/Game_Start" class="close-button">&#10006;</a>
                                     <h3 className='title'> 1st player : </h3>
                                     <label className='label' >
                                         Player name :
@@ -101,7 +100,6 @@ function Game_Start() {
                                         value={nbre1}
                                         onChange={e => setNbre1(e.target.value)}
                                         required />
-                                    
                                     <button className='submit'>Submit</button>
                                 </form>
                             )
@@ -110,15 +108,15 @@ function Game_Start() {
                         {
                             validation2 ? (
                                 <div className='form'>
-                                    <a href="/" class="close-button">&#10006;</a>
-                                    <h3 className='title'> 2ème joueur :  </h3>
+                                    <a href="/Game_Start" class="close-button">&#10006;</a>
+                                    <h3 className='title'> 2nd player :  </h3>
                                     <label className='label' >
                                         Player name : {nomJoueur2}
                                     </label>
                                 </div>
                             ) : (
                                 <form className='form' onSubmit={handleSubmit2}>
-                                    <a href="/" class="close-button">&#10006;</a>
+                                    <a href="/Game_Start" class="close-button">&#10006;</a>
                                     <h3 className='title'> 2nd player :  </h3>
                                     <label className='label' >
                                         Player name
@@ -149,6 +147,19 @@ function Game_Start() {
                                 </form>
                             )
                         }
+                    </div>
+                )
+            }
+
+            {
+                msgErreur ? (
+                    <div style={{color:"red",display:'flex', justifyContent:'center'}}>
+                        <h3>   
+                            Le premier chiffre doit être différent de zéro. Les trois chiffres doivent être différents.
+                        </h3>
+                    </div>
+                ) : (
+                    <div>
                     </div>
                 )
             }

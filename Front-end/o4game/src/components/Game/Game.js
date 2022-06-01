@@ -3,7 +3,7 @@ import React from 'react';
 function Game(props) {
     return (
         <div>
-            The game is starting -----------
+            ====== THE GAME SHOULD START ======
         </div>
     );
 }

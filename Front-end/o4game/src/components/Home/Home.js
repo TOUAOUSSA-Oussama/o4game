@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomeStyle.css';
-import letsgo from '../../assets/let-go-bg.png';
+import letsgo from '../../assets/letsgo-2.gif';
 import { useNavigate } from 'react-router-dom';
 
 function Home(){
@@ -8,25 +8,20 @@ function Home(){
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        history('/Game');
+        history('/Game_Start');
     }
 
     return (
         <div>
             <div class="container1" >
                 <div class="left-side">
-                    <div class="title">
+                    <div class="title2">
                         WELCOME TO THE GAME
                     </div>
-                    
                 </div>
                 <div class="pg">
                     <img class="labo" src={letsgo} alt= "let's go" onClick={handleSubmit}/>
                 </div>
-                {/* <div class="right-side">
-                    
-                </div> */}
             </div>
         </div>
     );

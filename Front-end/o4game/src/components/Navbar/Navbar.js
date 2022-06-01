@@ -10,7 +10,7 @@ import {
     NavLinks,
 } 
     from './NavbarStyle';
-import Logo from '../../assets/logo-2.png';
+import Logo from '../../assets/logo-10.png';
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -37,7 +37,7 @@ const Navbar = () => {
             <NavbarContainer>
                 {/* Logo + icone */}
                 <NavLogo to="/" onClick={closeMobileMenu}> 
-                    <img src={Logo} width="80"/>
+                    <img src={Logo} width="110"/>
                 </NavLogo> 
                 <MobileIcon onClick={handleClick}>
                     {click ? <FaTimes /> : <FaBars />}

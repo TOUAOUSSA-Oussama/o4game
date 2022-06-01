@@ -7,7 +7,7 @@ const Footer = () => {
         <FooterBody>
             <div class="text5"></div>
             <div class="text2">
-                <FooterText> ©2022 - O4GAME - TOOSSA - WALID - IMAD </FooterText>
+                <FooterText> ©2022 - O4GAME - TOOSSA </FooterText>
             </div>
             <div class="footer1">
                 <AboutImg to="/About">

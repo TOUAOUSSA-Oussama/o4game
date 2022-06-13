@@ -1,5 +1,9 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom';
+import winnerLogo from '../../assets/winner.gif';
+import { useNavigate } from 'react-router-dom';
+import './GameStyle.css';
+
 
 function Game() {
     const location = useLocation();
@@ -75,7 +79,6 @@ function Game() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // reste à ajouter le nombre dans la liste
-
         if (player1Turn) {
             // Calculer N : 
 
@@ -96,12 +99,25 @@ function Game() {
         setNbre("");
     };
 
+    const history = useNavigate();
+    const handleSubmit1 = (event) => {
+        event.preventDefault();
+        history('/');
+    }
+
     return (
         <div>
             {
                 gagnant ? (
-                    <div>
-                        Le joueur {joueurGagnant} a gagné !
+                    <div class="container1">
+                        <div class="left-side">
+                            <div class="title2">
+                                Le joueur {joueurGagnant} a gagné !
+                            </div>
+                        </div>
+                        <div class="pg">
+                            <img class='labo' style={{width:400}} src={winnerLogo} alt= "winner" onClick={handleSubmit1}/>
+                        </div>
                     </div>
                 ) : (
                     <div>
